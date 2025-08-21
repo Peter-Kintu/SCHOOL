@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bright Future School</title>
+    <style>
+        /* 🎨 General Styling & Body */
+        :root {
+            --primary-color: #1a535c;
+            --secondary-color: #4ecdc4;
+            --tertiary-color: #ffe66d;
+            --background-light: #f7f9fc;
+            --text-color: #333;
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            background-color: var(--background-light);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--primary-color);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* ➡️ Header & Navigation */
+        .site-header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        .site-header h1 {
+            margin: 0;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: #fff;
+        }
+
+        .site-header p {
+            font-style: italic;
+            margin-top: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .site-nav {
+            background-color: var(--secondary-color);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 0.5rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .site-nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .site-nav a:hover, .site-nav a:focus {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        /* 📸 Continuous Scrolling Gallery */
+        .gallery-section {
+            padding: 2rem 0; /* No horizontal padding for full-width scroll */
+            overflow: hidden; /* Hides the images outside the section */
+        }
+
+        .gallery-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .scroll-row {
+            display: flex;
+            white-space: nowrap;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        .scroll-content {
+            display: flex;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        /* Adjust animation duration for speed control */
+        .scroll-left {
+            animation-name: scrollLeft;
+            animation-duration: 35s; /* Slower speed */
+        }
+
+        .scroll-right {
+            animation-name: scrollRight;
+            animation-duration: 35s; /* Slower speed */
+        }
+
+        /* The duplicate set of images creates the seamless loop */
+        .scroll-row img {
+            width: 300px;
+            height: 200px;
+            margin: 0 1rem;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+        }
+
+        @keyframes scrollLeft {
+            from { transform: translateX(0); }
+            to { transform: translateX(-100%); }
+        }
+
+        @keyframes scrollRight {
+            from { transform: translateX(calc(-100% + 2rem)); }
+            to { transform: translateX(0); }
+        }
+
+        /* Pause animation on hover */
+        .scroll-row:hover .scroll-content {
+            animation-play-state: paused;
+        }
+
+        /* 📬 Info & Footer Sections */
+        .info-section {
+            background-color: #fff;
+            padding: 3rem 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .info-column h3 {
+            border-bottom: 3px solid var(--secondary-color);
+            display: inline-block;
+            padding-bottom: 0.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-column li {
+            margin-bottom: 0.75rem;
+        }
+
+        .info-column a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color 0.3s ease, text-decoration 0.3s ease;
+        }
+
+        .info-column a:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
+        }
+
+        .newsletter-form input, .newsletter-form button {
+            width: 100%;
+            padding: 0.75rem;
+            margin-top: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button {
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .site-footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+
+        /* 🖥️ Responsive Design */
+        @media (max-width: 768px) {
+            .site-nav {
+                flex-direction: column;
+            }
+
+            .site-nav a {
+                padding: 0.5rem 1rem;
+                margin: 0.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <h1>Bright Future School</h1>
+        <p>“Where dreams take root and futures bloom”</p>
+    </header>
+
+    <nav class="site-nav">
+        <a href="#home">Home</a>
+        <a href="#academics">Academics</a>
+        <a href="#staff">Staff</a>
+        <a href="#student-life">Student Life</a>
+        <a href="#events">Events</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <main>
+        <section class="gallery-section">
+            <h2 class="gallery-title">📸 School Memories & Events</h2>
+
+            <div class="scroll-row">
+                <div class="scroll-content scroll-left">
+                    <img src="https://images.pexels.com/photos/256468/pexels-photo-256468.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Students in a library">
+                    <img src="https://images.pexels.com/photos/267806/pexels-photo-267806.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Teacher explaining to a student">
+                    <img src="https://images.pexels.com/photos/1054215/pexels-photo-1054215.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Group of students laughing">
+                    <img src="https://images.pexels.com/photos/207691/pexels-photo-207691.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Kids raising hands in class">
+                    <img src="https://images.pexels.com/photos/8617830/pexels-photo-8617830.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Students drawing in a classroom">
+
+                    <!-- Duplicate images for seamless loop -->
+                    <img src="https://images.pexels.com/photos/256468/pexels-photo-256468.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Students in a library">
+                    <img src="https://images.pexels.com/photos/267806/pexels-photo-267806.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Teacher explaining to a student">
+                    <img src="https://images.pexels.com/photos/1054215/pexels-photo-1054215.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Group of students laughing">
+                    <img src="https://images.pexels.com/photos/207691/pexels-photo-207691.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Kids raising hands in class">
+                    <img src="https://images.pexels.com/photos/8617830/pexels-photo-8617830.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Students drawing in a classroom">
+                </div>
+            </div>
+
+            <div class="scroll-row">
+                <div class="scroll-content scroll-right">
+                    <img src="https://images.pexels.com/photos/267806/pexels-photo-267806.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Teacher explaining to a student">
+                    <img src="https://images.pexels.com/photos/1054215/pexels-photo-1054215.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Group of students laughing">
+                    <img src="https://images.pexels.com/photos/207691/pexels-photo-207691.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Kids raising hands in class">
+                    <img src="https://images.pexels.com/photos/8617830/pexels-photo-8617830.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Students drawing in a classroom">
+                    <img src="https://images.pexels.com/photos/256468/pexels-photo-256468.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Students in a library">
+
+                    <!-- Duplicate images for seamless loop -->
+                    <img src="https://images.pexels.com/photos/267806/pexels-photo-267806.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Teacher explaining to a student">
+                    <img src="https://images.pexels.com/photos/1054215/pexels-photo-1054215.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Group of students laughing">
+                    <img src="https://images.pexels.com/photos/207691/pexels-photo-207691.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Kids raising hands in class">
+                    <img src="https://images.pexels.com/photos/8617830/pexels-photo-8617830.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Students drawing in a classroom">
+                    <img src="https://images.pexels.com/photos/256468/pexels-photo-256468.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Students in a library">
+                </div>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <div class="info-column">
+                <h3>📬 Newsletter</h3>
+                <p>Subscribe to stay updated on school news, events, and admissions.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email" required aria-label="Enter your email to subscribe">
+                    <button type="submit">Subscribe</button>
+                </form>
+
+                <h3 style="margin-top: 2rem;">🔗 Important Links</h3>
+                <ul>
+                    <li><a href="#">Admission Procedure</a></li>
+                    <li><a href="#">Admission Requirements</a></li>
+                    <li><a href="#">Day Care</a></li>
+                    <li><a href="#">Kindergarten</a></li>
+                    <li><a href="#">Primary</a></li>
+                    <li><a href="#">Corporate Social Responsibility</a></li>
+                </ul>
+            </div>
+
+            <div class="info-column">
+                <h3>📰 Recent Posts</h3>
+                <ul>
+                    <li><a href="#">Learn at Home work on Telegram</a></li>
+                    <li><a href="#">Victorious celebrates 2019 PLE results</a></li>
+                    <li><a href="#">PLE 2017 Performance</a></li>
+                    <li><a href="#">2016 PLE Congratulatory Message</a></li>
+                    <li><a href="#">abc In South Africa</a></li>
+                </ul>
+
+                <h3 style="margin-top: 2rem;">📱 Follow Us</h3>
+                <p>Join our community on Telegram, Facebook, and WhatsApp for updates and celebrations.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        &copy; 2025 Bright Future School | Rubaga, Kampala | Powered by Ugandan Innovation
+    </footer>
+
+</body>
+</html>
